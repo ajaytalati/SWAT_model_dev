@@ -1,0 +1,58 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# --- Packaging / install artefacts ---
+*.egg-info/
+*.egg
+build/
+dist/
+.installed.cfg
+pip-wheel-metadata/
+
+# --- pytest / coverage / mypy / ruff caches ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# --- venvs (in case someone creates one inside the repo) ---
+.venv/
+venv/
+env/
+
+# --- JAX compilation cache ---
+.jax_compilation_cache/
+
+# --- Regenerable scenario outputs ---
+# The 6 scenario scripts and `tests/test_plant_regression_scenarios.py`
+# write `outputs/swat/<scenario>/trajectory.npz` + per-channel obs npz
+# on every run. They're regenerable, can clutter, and bloat the repo
+# size — keep them out of git.
+outputs/
+
+# --- LaTeX intermediates ---
+# Keep swat_model.tex (source) and swat_model.pdf (built artefact);
+# ignore the noise.
+LaTex_docs/*.aux
+LaTex_docs/*.log
+LaTex_docs/*.out
+LaTex_docs/*.toc
+LaTex_docs/*.synctex.gz
+LaTex_docs/*.fls
+LaTex_docs/*.fdb_latexmk
+LaTex_docs/auto/
+
+# --- Editor / OS noise ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

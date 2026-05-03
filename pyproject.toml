@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swat-model-factory"
+version = "0.2.0"
+description = "Dev sandbox for the SWAT physiological SDE model — validate the model files (identifiability, stiffness, plant↔estimator reconciliation, sim↔estimator obs consistency, controller sandbox, plant 14-day basin regression) before exporting them to the smc2fc framework."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Ajay Talati"}]
+
+# The framework code is a personal project with its own pyproject.toml;
+# pin to its default branch via git URL so `pip install -e .` always
+# picks up the latest framework code without us having to vendor it.
+dependencies = [
+    "smc2fc @ git+https://github.com/ajaytalati/python-smc2-filtering-control.git@master",
+    # smc2fc already pulls jax/jaxlib/numpy/scipy/matplotlib transitively;
+    # `matplotlib` is listed explicitly because `models/swat/sim_plots.py`
+    # in this repo imports it directly.
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+# This dev sandbox is structured as a flat `models/` + `tools/` +
+# `tests/` + `scenarios/` repo, not a single top-level Python package.
+# Pip-installing it gives you the deps + makes the four subpackages
+# importable; the existing PYTHONPATH=. workflow continues to work too.
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["models*", "tools*", "tests*", "scenarios*"]
+exclude = ["exports*", "bug_reports*", "LaTex_docs*", "outputs*", "__pycache__*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra"

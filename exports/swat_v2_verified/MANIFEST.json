@@ -1,0 +1,67 @@
+{
+    "model": "SWAT",
+    "version": "2.0.0-verified",
+    "validation": {
+        "identifiability": {
+            "rank": 7,
+            "cond": 4608000000000000.0,
+            "identifiable_from_fim": [
+                "E_crit",
+                "V_n_scale",
+                "alpha_T",
+                "mu_step0",
+                "sigma_HR",
+                "sigma_s",
+                "sigma_step"
+            ],
+            "identifiable_subset": [
+                "E_crit",
+                "V_n_scale",
+                "alpha_T",
+                "c_tilde",
+                "delta_c",
+                "mu_step0",
+                "sigma_HR",
+                "sigma_s",
+                "sigma_step"
+            ],
+            "sleep_channel_added_manually": [
+                "c_tilde",
+                "delta_c"
+            ],
+            "n_identifiable": 9,
+            "fim_tool_coverage_note": "FIM tool covers hr/steps/stress only; sleep params added manually",
+            "passed": true
+        },
+        "stability": {
+            "h_max_mins": 29.999999907497035,
+            "max_rho_per_day": 96.00000029600949,
+            "n_substeps_for_15min": 1,
+            "passed": true
+        },
+        "reconciliation": {
+            "passed": true
+        },
+        "likelihood": {
+            "passed": true
+        },
+        "controller": {
+            "passed": true
+        }
+    },
+    "export_config": {
+        "h_max_mins": 29.999999907497035,
+        "n_substeps": 1,
+        "identifiable_subset": [
+            "E_crit",
+            "V_n_scale",
+            "alpha_T",
+            "c_tilde",
+            "delta_c",
+            "mu_step0",
+            "sigma_HR",
+            "sigma_s",
+            "sigma_step"
+        ]
+    }
+}
