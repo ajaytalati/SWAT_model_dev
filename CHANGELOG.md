@@ -10,6 +10,26 @@ Dates are in `YYYY-MM-DD`; times are local (BST unless otherwise noted).
 
 ## 2026-05-03
 
+### 23:02 BST — Initial push to github as `ajaytalati/SWAT_model_dev`
+- **Author:** Ajay Talati
+- **Assistant:** Claude Code (Opus 4.7, 1M context)
+- **Files added:** [LICENSE](LICENSE) (MIT), [.gitignore](.gitignore)
+- **What changed:**
+  - Added MIT `LICENSE` (matching the licence on `psim`).
+  - Added `.gitignore` covering Python noise (`__pycache__/`, `*.pyc`, `*.egg-info/`, `.pytest_cache/`, `.coverage*`, `.mypy_cache/`, `.ruff_cache/`), venv folders, JAX compilation cache, `outputs/` (regenerable scenario artefacts), LaTeX intermediates (`*.aux/log/out/toc/...`), and editor/OS noise.
+  - Initialised git in `swat_model_factory/` on the `main` branch.
+  - Staged 45 files explicitly by name (no `git add .` — per the safety rule about avoiding sensitive-file sweep). Verified zero matches for `.env|secret|credential|password|key$|token`.
+  - Committed as the root commit with a descriptive message documenting what's in the repo, install command, and test command.
+  - Created the public github repo `ajaytalati/SWAT_model_dev` via `gh repo create --public --push`. The previous repo of the same name had been deleted by the user; this one is fresh (created_at 22:01:17 UTC). The existing local folder at `~/Repos/SWAT_model_dev/` is unrelated to the new github repo — it's an older local clone of the canonical model that's been sitting on disk; not touched.
+- **Repo URL:** https://github.com/ajaytalati/SWAT_model_dev
+- **Verified by:**
+  - `git ls-remote --heads origin` → `main` at `6add44c` (matches local).
+  - `gh api repos/ajaytalati/SWAT_model_dev/git/trees/main?recursive=1` → 45 blobs (matches the 45 files committed locally).
+  - Top-level entries on github: `.gitignore`, `CHANGELOG.md`, `LICENSE`, `README.md`, `pyproject.toml`, `LaTex_docs/`, `bug_reports/`, `exports/`, `models/`, `scenarios/`, `tests/`, `tools/` — exactly the 12 things expected.
+- **Naming caveats — flagging for awareness, not a problem:**
+  - The local working directory is still `swat_model_factory/`; the github repo is `SWAT_model_dev`. Future clones will land in a folder named `SWAT_model_dev/`. The Python package name in `pyproject.toml` is `swat-model-factory` (unchanged). All three names refer to the same thing; this is cosmetic, not breaking.
+  - `pyproject.toml`'s `smc2fc` dep still pulls from `github.com/ajaytalati/python-smc2-filtering-control.git@master` (correct — `smc2fc` is the framework's own repo, not this one).
+
 ### 22:50 BST — Drop `psim` from the dev repo's dependencies entirely; inline the one helper that was being used
 - **Author:** Ajay Talati
 - **Assistant:** Claude Code (Opus 4.7, 1M context)
